@@ -93,6 +93,8 @@ Your feedback is important to us. Connect with us on [Stack Overflow](http://sta
 
 If you'd like to contribute to this sample, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
+This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+
 ## Additional resources
 
 - [Other Microsoft Graph Connect samples](https://github.com/MicrosoftGraph?utf8=%E2%9C%93&query=-Connect)
