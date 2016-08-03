@@ -168,11 +168,9 @@
 &lt;/head&gt;
 &lt;body style='font-family:calibri'&gt;
 &lt;h2&gt;Congratulations!&lt;/h2&gt;
-&lt;p&gt;This is a message from the Microsoft Graph Connect sample. You are well on your way to incorporating Office 365 services
-in your apps.
-&lt;/p&gt;
+&lt;p&gt;This is a message from the Microsoft Graph Connect sample.&lt;/p&gt;
 &lt;p&gt;What's next?&lt;/p&gt;
-&lt;p&gt;Use the Microsoft Graph .NET Client Library to integrate Office 365 services and data into your own apps.&lt;/p&gt;
+&lt;p&gt;Use the Microsoft Graph .NET Client Library to integrate additional Microsoft services and data into your own apps.&lt;/p&gt;
 &lt;h2&gt;Give us feedback&lt;/h2&gt;
 &lt;p&gt;We hope you found this sample useful. We'd love to hear from you, so drop us an email at
 &lt;a href='mailto:docthis@microsoft.com?subject=Feedback%20on%20the%20Microsoft%20Graph%20Connect%20sample'&gt;

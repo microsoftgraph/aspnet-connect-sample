@@ -10,7 +10,7 @@
 <h1>@ViewBag.Title</h1>
 <h2>@Resource.Graph_GetEmailAddress_Heading</h2>
 <p>@Html.Raw(Resource.Graph_GetEmailAddress_Instruction)</p>
-@using (Html.BeginForm("GetMyEmailAddress", "Home"))
+@using (Html.BeginForm("get-email-address", "Home"))
 {
     <div class="col-sm-12">
         <div class="form-group">
@@ -25,7 +25,7 @@
 
 <h2>@Resource.Graph_SendMail_Heading</h2>
 <p>@Html.Raw(Resource.Graph_SendMail_Instruction)</p>
-@using (Html.BeginForm("SendMail", "Home"))
+@using (Html.BeginForm("send-email", "Home"))
 {
     <div class="col-sm-12">
             <div class="form-group">

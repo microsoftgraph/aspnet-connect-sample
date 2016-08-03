@@ -21,6 +21,7 @@ namespace Microsoft_Graph_SDK_ASPNET_Connect.Controllers
         }
 
         [Authorize]
+        [ActionName("get-email-address")]
         // Get the current user's email address from their profile.
         public async Task<ActionResult> GetMyEmailAddress()
         {
@@ -30,11 +31,8 @@ namespace Microsoft_Graph_SDK_ASPNET_Connect.Controllers
                 // Initialize the GraphServiceClient.
                 GraphServiceClient graphClient = SDKHelper.GetAuthenticatedClient();
 
-                // Get the current user. 
-                // This sample only needs the user's email address, so select the mail and userPrincipalName properties.
-                // If the mail property isn't defined, userPrincipalName should map to the email for all account types. 
-                User me = await graphClient.Me.Request().Select("mail,userPrincipalName").GetAsync();
-                ViewBag.Email = me.Mail ?? me.UserPrincipalName;
+                // Get the current user's email address. 
+                ViewBag.Email = await GetMyEmailAddress(graphClient);
                 return View("Graph");
             }
             catch (ServiceException se)
@@ -44,7 +42,19 @@ namespace Microsoft_Graph_SDK_ASPNET_Connect.Controllers
             }
         }
 
+        public async Task<string> GetMyEmailAddress(GraphServiceClient graphClient)
+        {
+
+            // Get the current user. 
+            // This sample only needs the user's email address, so select the mail and userPrincipalName properties.
+            // If the mail property isn't defined, userPrincipalName should map to the email for all account types. 
+            User me = await graphClient.Me.Request().Select("mail,userPrincipalName").GetAsync();
+            return me.Mail ?? me.UserPrincipalName;            
+        }
+
+
         [Authorize]
+        [ActionName("send-email")]
         // Send mail on behalf of the current user.
         public async Task<ActionResult> SendMail()
         {
@@ -53,6 +63,39 @@ namespace Microsoft_Graph_SDK_ASPNET_Connect.Controllers
                 ViewBag.Message = Resource.Graph_SendMail_Message_GetEmailFirst;
                 return View("Graph");
             }
+
+            Message email = BuildMailMessage();
+            try
+            {
+
+                // Initialize the GraphServiceClient.
+                GraphServiceClient graphClient = SDKHelper.GetAuthenticatedClient();
+
+                // Send the email.
+                await SendMail(graphClient, email);
+
+                // Reset the current user's email address and the status to display when the page reloads.
+                ViewBag.Email = Request.Form["email-address"];
+                ViewBag.Message = Resource.Graph_SendMail_Success_Result;
+                return View("Graph");
+            }
+            catch (ServiceException se)
+            {
+                if (se.Error.Code == Resource.Error_AuthChallengeNeeded) return new EmptyResult();
+                return RedirectToAction("Index", "Error", new { message = Resource.Error_Message + Request.RawUrl + ": " + se.Error.Message });
+            }
+        }
+
+        
+        // Send an email message from the current user.
+        public async Task SendMail(GraphServiceClient graphClient, Message email)
+        {
+            await graphClient.Me.SendMail(email, true).Request().PostAsync();
+        }
+
+        // Create the email message.
+        protected Message BuildMailMessage()
+        {
 
             // Get the user input.
             string recipients = Request.Form["recipients"];
@@ -85,26 +128,7 @@ namespace Microsoft_Graph_SDK_ASPNET_Connect.Controllers
                 Subject = subject,
                 ToRecipients = recipientList
             };
-            
-            try
-            {
-
-                // Initialize the GraphServiceClient.
-                GraphServiceClient graphClient = SDKHelper.GetAuthenticatedClient();
-
-                // Send an email message from the current user.
-                await graphClient.Me.SendMail(email, true).Request().PostAsync();
-
-                // Reset the current user's email address and the status to display when the page reloads.
-                ViewBag.Email = Request.Form["email-address"];
-                ViewBag.Message = Resource.Graph_SendMail_Success_Result;
-                return View("Graph");
-            }
-            catch (ServiceException se)
-            {
-                if (se.Error.Code == Resource.Error_AuthChallengeNeeded) return new EmptyResult();
-                return RedirectToAction("Index", "Error", new { message = Resource.Error_Message + Request.RawUrl + ": " + se.Error.Message });
-            }
+            return email;
         }
 
         public ActionResult About()
