@@ -3,25 +3,25 @@
 *  See LICENSE in the source repository root for complete license information. 
 */
 
-using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Microsoft.Graph;
 using Microsoft_Graph_SDK_ASPNET_Connect.Helpers;
+using Microsoft_Graph_SDK_ASPNET_Connect.Models;
 using Resources;
 
 namespace Microsoft_Graph_SDK_ASPNET_Connect.Controllers
 {
     public class HomeController : Controller
     {
+        GraphService graphService = new GraphService();
+
         public ActionResult Index()
         {
             return View("Graph");
         }
 
         [Authorize]
-        [ActionName("get-email-address")]
         // Get the current user's email address from their profile.
         public async Task<ActionResult> GetMyEmailAddress()
         {
@@ -32,7 +32,7 @@ namespace Microsoft_Graph_SDK_ASPNET_Connect.Controllers
                 GraphServiceClient graphClient = SDKHelper.GetAuthenticatedClient();
 
                 // Get the current user's email address. 
-                ViewBag.Email = await GetMyEmailAddress(graphClient);
+                ViewBag.Email = await graphService.GetMyEmailAddress(graphClient);
                 return View("Graph");
             }
             catch (ServiceException se)
@@ -42,21 +42,9 @@ namespace Microsoft_Graph_SDK_ASPNET_Connect.Controllers
             }
         }
 
-        public async Task<string> GetMyEmailAddress(GraphServiceClient graphClient)
-        {
-
-            // Get the current user. 
-            // This sample only needs the user's email address, so select the mail and userPrincipalName properties.
-            // If the mail property isn't defined, userPrincipalName should map to the email for all account types. 
-            User me = await graphClient.Me.Request().Select("mail,userPrincipalName").GetAsync();
-            return me.Mail ?? me.UserPrincipalName;            
-        }
-
-
         [Authorize]
-        [ActionName("send-email")]
         // Send mail on behalf of the current user.
-        public async Task<ActionResult> SendMail()
+        public async Task<ActionResult> SendEmail()
         {
             if (string.IsNullOrEmpty(Request.Form["email-address"]))
             {
@@ -64,7 +52,8 @@ namespace Microsoft_Graph_SDK_ASPNET_Connect.Controllers
                 return View("Graph");
             }
 
-            Message email = BuildMailMessage();
+            // Build the email message.
+            Message message = graphService.BuildEmailMessage(Request.Form["recipients"], Request.Form["subject"]);
             try
             {
 
@@ -72,7 +61,7 @@ namespace Microsoft_Graph_SDK_ASPNET_Connect.Controllers
                 GraphServiceClient graphClient = SDKHelper.GetAuthenticatedClient();
 
                 // Send the email.
-                await SendMail(graphClient, email);
+                await graphService.SendEmail(graphClient, message);
 
                 // Reset the current user's email address and the status to display when the page reloads.
                 ViewBag.Email = Request.Form["email-address"];
@@ -84,51 +73,6 @@ namespace Microsoft_Graph_SDK_ASPNET_Connect.Controllers
                 if (se.Error.Code == Resource.Error_AuthChallengeNeeded) return new EmptyResult();
                 return RedirectToAction("Index", "Error", new { message = Resource.Error_Message + Request.RawUrl + ": " + se.Error.Message });
             }
-        }
-
-        
-        // Send an email message from the current user.
-        public async Task SendMail(GraphServiceClient graphClient, Message email)
-        {
-            await graphClient.Me.SendMail(email, true).Request().PostAsync();
-        }
-
-        // Create the email message.
-        protected Message BuildMailMessage()
-        {
-
-            // Get the user input.
-            string recipients = Request.Form["recipients"];
-            string subject = Request.Form["subject"];
-            string bodyContent = Resource.Graph_SendMail_Body_Content;
-
-            // Prepare the recipient list.
-            string[] splitter = { ";" };
-            string[] splitRecipientsString = recipients.Split(splitter, StringSplitOptions.RemoveEmptyEntries);
-            List<Recipient> recipientList = new List<Recipient>();
-            foreach (string recipient in splitRecipientsString)
-            {
-                recipientList.Add(new Recipient
-                {
-                    EmailAddress = new EmailAddress
-                    {
-                        Address = recipient.Trim()
-                    }
-                });
-            }
-
-            // Build the email message.
-            Message email = new Message
-            {
-                Body = new ItemBody
-                {
-                    Content = bodyContent,
-                    ContentType = BodyType.Html,
-                },
-                Subject = subject,
-                ToRecipients = recipientList
-            };
-            return email;
         }
 
         public ActionResult About()
