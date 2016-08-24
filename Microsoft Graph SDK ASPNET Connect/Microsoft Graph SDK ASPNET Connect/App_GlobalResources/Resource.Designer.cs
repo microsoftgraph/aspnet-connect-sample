@@ -198,7 +198,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to After you get the email address, optionally change the following fields and then choose the &lt;b&gt;Send mail&lt;/b&gt; button:.
+        ///   Looks up a localized string similar to After you get the email address, optionally change the following fields and then choose the &lt;b&gt;Send email&lt;/b&gt; button:.
         /// </summary>
         internal static string Graph_SendMail_Instruction {
             get {

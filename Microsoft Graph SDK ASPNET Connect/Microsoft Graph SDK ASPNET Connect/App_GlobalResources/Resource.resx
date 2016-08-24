@@ -208,7 +208,7 @@ log an issue&lt;/a&gt; on our repository. &lt;/p&gt;
     <comment>Heading for 'send mail' section in Graph view</comment>
   </data>
   <data name="Graph_SendMail_Instruction" xml:space="preserve">
-    <value>After you get the email address, optionally change the following fields and then choose the &lt;b&gt;Send mail&lt;/b&gt; button:</value>
+    <value>After you get the email address, optionally change the following fields and then choose the &lt;b&gt;Send email&lt;/b&gt; button:</value>
     <comment>Instructions for 'send mail' section in Graph view</comment>
   </data>
   <data name="Graph_SendMail_Message_GetEmailFirst" xml:space="preserve">
