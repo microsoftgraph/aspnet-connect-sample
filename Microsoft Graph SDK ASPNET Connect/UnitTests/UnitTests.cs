@@ -1,11 +1,16 @@
-﻿using System;
+﻿/* 
+*  Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. 
+*  See LICENSE in the source repository root for complete license information. 
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using Microsoft_Graph_SDK_ASPNET_Connect.Controllers;
+using Microsoft_Graph_SDK_ASPNET_Connect.Models;
 using Microsoft.Graph;
 
 namespace UnitTests
@@ -76,38 +81,30 @@ namespace UnitTests
         }
 
         [TestMethod]
-        // Test HomeController.GetMyEmailAddress_SDK method. 
+        // Test GraphService.GetMyEmailAddress method. 
         // Gets the email address of the test account.
         // Success: Retrieved email address matches test account's email address.
         public async Task GetMyEmailAddress()
         {
             // Arrange
             string emailAddress = null;
-            var controller = new HomeController();
+            GraphService graphService = new GraphService();
 
             // Act
-            try
-            {
-                emailAddress = await controller.GetMyEmailAddress(client);
-            }
+            emailAddress = await graphService.GetMyEmailAddress(client);
 
             // Assert
-            catch (ServiceException se)
-            {
-                Assert.Fail("Threw " + se.Error.Message);
-            }
-
             Assert.IsTrue(emailAddress.ToLower() == userName.ToLower(), emailAddress.ToString());
         }
 
         [TestMethod]
-        // Test HomeController.SendMail_SDK method. 
+        // Test GraphService.SendEmail method. 
         // Sends an email to the test account from the test account.
         // Success: Task completes without throwing an exception.
-        public async Task SendMail()
+        public async Task SendEmail()
         {
             // Arrange.
-            var controller = new HomeController();
+            GraphService graphService = new GraphService();
             string subject = "Test email from ASP.NET 4.6 Connect sample";
             string bodyContent = "<html><body>The body of the test email.</body></html>";
             List<Recipient> recipientList = new List<Recipient>();
@@ -118,7 +115,7 @@ namespace UnitTests
                     Address = userName
                 }
             });
-            Message email = new Message
+            Message message = new Message
             {
                 Body = new ItemBody
                 {
@@ -130,19 +127,11 @@ namespace UnitTests
             };
 
             // Act
-            try
-            {
-                await controller.SendMail(client, email);
-
-            }
+            Task task = graphService.SendEmail(client, message);
 
             // Assert
-            catch (ServiceException se)
-            {
-                Assert.Fail("Threw " + se.Error.Message);
-            }
-
-            Assert.IsTrue(Task.CompletedTask.IsCompleted);
+            Task.WaitAll(task);
+            Assert.IsTrue(task.IsCompleted, task.Exception?.Message);
         }
     }
 }

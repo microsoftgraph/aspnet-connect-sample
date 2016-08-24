@@ -25,7 +25,7 @@ namespace Microsoft_Graph_SDK_ASPNET_Connect
         // The redirectUri is where users are redirected after sign in and consent.
         // The graphScopes are the Microsoft Graph permission scopes that are used by this sample: User.Read Mail.Send
         private static string appId = ConfigurationManager.AppSettings["ida:AppId"];
-        public static string appSecret = ConfigurationManager.AppSettings["ida:AppSecret"];
+        private static string appSecret = ConfigurationManager.AppSettings["ida:AppSecret"];
         private static string redirectUri = ConfigurationManager.AppSettings["ida:RedirectUri"];
         private static string graphScopes = ConfigurationManager.AppSettings["ida:GraphScopes"];
         
