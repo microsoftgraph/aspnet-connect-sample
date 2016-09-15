@@ -3,7 +3,6 @@
 *  See LICENSE in the source repository root for complete license information. 
 */
 
-using Microsoft.Graph;
 using Resources;
 using System;
 using System.Collections.Generic;
