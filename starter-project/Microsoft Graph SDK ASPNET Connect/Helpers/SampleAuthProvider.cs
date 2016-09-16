@@ -40,6 +40,7 @@ namespace Microsoft_Graph_SDK_ASPNET_Connect.Helpers
         // Gets an access token. First tries to get the token from the token cache.
         public async Task<string> GetUserAccessTokenAsync()
         {
+            return string.Empty;
         }
     }
 }

@@ -43,7 +43,7 @@ This sample requires the following:
 
 7. Choose **Web**.
 
-8. Make sure the **Allow Implicit Flow** check box is selected, and enter *https://localhost:44300/* as the Redirect URI. 
+8. Make sure the **Allow Implicit Flow** check box is selected, and enter *http://localhost:55065/* as the Redirect URI. 
 
    The **Allow Implicit Flow** option enables the hybrid flow. During authentication, this enables the app to receive both sign-in info (the id_token) and artifacts (in this case, an authorization code) that the app can use to obtain an access token.
 
