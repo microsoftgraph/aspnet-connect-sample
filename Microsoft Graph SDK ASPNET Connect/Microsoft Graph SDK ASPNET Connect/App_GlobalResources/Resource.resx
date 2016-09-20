@@ -176,7 +176,7 @@
 &lt;li&gt;Use the Microsoft Graph .NET Client Library to integrate additional Microsoft services and data into your own apps.&lt;/li&gt;&lt;/ul&gt;
 &lt;h3&gt;Give us feedback&lt;/h3&gt;
 &lt;p&gt;If you have any trouble running this sample, please &lt;a href='https://github.com/microsoftgraph/aspnet-connect-sample/issues'&gt;
-log an issue&lt;/a&gt; on our repository.&lt;/p&gt;&lt;p&gt;For general questions about the Microsoft Graph API, post to &lt;a href='https://stackoverflow.com/questions/tagged/microsoftgraph'&gt;Stack Overflow&lt;/a&gt;. Make sure that your questions or comments are tagged with [MicrosoftGraph].&lt;/p&gt;
+log an issue&lt;/a&gt; on our repository.&lt;/p&gt;&lt;p&gt;For general questions about the Microsoft Graph API, post to &lt;a href='https://stackoverflow.com/questions/tagged/microsoftgraph'&gt;Stack Overflow&lt;/a&gt;. Make sure that your questions or comments are tagged with [microsoftgraph].&lt;/p&gt;
 &lt;p&gt;Thanks, and happy coding!&lt;br&gt;
 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Your Microsoft Graph samples development team &lt;/p&gt;
 &lt;div style='text-align:center; font-family:calibri'&gt;
