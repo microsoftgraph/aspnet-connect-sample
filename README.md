@@ -71,6 +71,8 @@ This sample requires the following:
 
 ## Code of note
 
+> Note: To understand the code for calling the Microsoft Graph API in an ASP.NET MVC app, see [Get started with Microsoft Graph in an ASP.NET 4.6 MVC app](https://graph.microsoft.io/en-us/docs/platform/aspnetmvc).
+
 - [Startup.Auth.cs](/Microsoft%20Graph%20SDK%20ASPNET%20Connect/Microsoft%20Graph%20SDK%20ASPNET%20Connect/App_Start/Startup.Auth.cs). Authenticates the current user and initializes the sample's token cache.
 
 - [SessionTokenCache.cs](/Microsoft%20Graph%20SDK%20ASPNET%20Connect/Microsoft%20Graph%20SDK%20ASPNET%20Connect/TokenStorage/SessionTokenCache.cs). Stores the user's token information. You can replace this with your own custom token cache. Learn more in [Caching access tokens in a multitenant application](https://azure.microsoft.com/en-us/documentation/articles/guidance-multitenant-identity-token-cache/).
