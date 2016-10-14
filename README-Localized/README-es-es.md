@@ -1,29 +1,29 @@
-# Ejemplo Connect de Microsoft Graph para ASP.NET 4.6
+# <a name="microsoft-graph-connect-sample-for-asp.net-4.6"></a>Ejemplo Connect de Microsoft Graph para ASP.NET 4.6
 
-## Tabla de contenido
+## <a name="table-of-contents"></a>Tabla de contenido
 
-* [Requisitos previos](#requisitos-previos)
-* [Registrar la aplicación](#registrar-la-aplicación)
-* [Compilar y ejecutar el ejemplo](#compilar-y-ejecutar-el-ejemplo)
-* [Código de nota](#código-de-nota)
-* [Preguntas y comentarios](#preguntas-y-comentarios)
-* [Colaboradores](#colaboradores)
-* [Recursos adicionales](#recursos-adicionales)
+* [Requisitos previos](#prerequisites)
+* [Registrar la aplicación](#register-the-application)
+* [Compilar y ejecutar el ejemplo](#build-and-run-the-sample)
+* [Código de nota](#code-of-note)
+* [Preguntas y comentarios](#questions-and-comments)
+* [Colaboradores](#contributing)
+* [Recursos adicionales](#additional-resources)
 
 Este ejemplo muestra cómo conectar una aplicación web ASP.NET 4.6 MVC a una cuenta profesional o educativa de Microsoft (Azure Active Directory) o a una cuenta personal (Microsoft) usando la API de Microsoft Graph para enviar un correo electrónico. Usa la [biblioteca del cliente de Microsoft Graph .NET](https://github.com/microsoftgraph/msgraph-sdk-dotnet) para trabajar con los datos devueltos por Microsoft Graph. 
 
-Además, el ejemplo usa la [biblioteca de autenticación de Microsoft (MSAL)](https://www.nuget.org/packages/Microsoft.Identity.Client/) para la autenticación. El SDK de MSAL ofrece características para trabajar con el [punto de conexión de autenticación v2.0](https://azure.microsoft.com/en-us/documentation/articles/active-directory-appmodel-v2-overview), lo que permite a los desarrolladores escribir un flujo de código único que controla la autenticación para las cuentas profesionales, educativas (Azure Active Directory) o las cuentas personales (Microsoft).
+Además, el ejemplo usa la [biblioteca de autenticación de Microsoft (MSAL)](https://www.nuget.org/packages/Microsoft.Identity.Client/) para la autenticación. El SDK de MSAL ofrece características para trabajar con el [punto de conexión v2.0 de Azure AD](https://azure.microsoft.com/en-us/documentation/articles/active-directory-appmodel-v2-overview), lo que permite a los desarrolladores escribir un flujo de código único que controla la autenticación para las cuentas profesionales, educativas (Azure Active Directory) o las cuentas personales (Microsoft).
 
  > **Nota** El SDK de MSAL está actualmente en versión preliminar y, por tanto, no debe usarse en código de producción. Se usa aquí únicamente con fines ilustrativos.
 
-## Requisitos previos
+## <a name="prerequisites"></a>Requisitos previos
 
 Este ejemplo necesita lo siguiente:  
 
   * [Visual Studio 2015](https://www.visualstudio.com/en-us/downloads) 
-  * Ya sea una [cuenta de Microsoft](https://www.outlook.com) u [Office 365 para una cuenta empresarial](https://msdn.microsoft.com/en-us/office/office365/howto/setup-development-environment#bk_Office365Account) Puede registrarse para [una suscripción a Office 365 Developer](https://msdn.microsoft.com/en-us/office/office365/howto/setup-development-environment#bk_Office365Account), que incluye los recursos que necesita para comenzar a crear aplicaciones de Office 365.
+  * Ya sea una [cuenta de Microsoft](https://www.outlook.com) u [Office 365 para una cuenta empresarial](https://msdn.microsoft.com/en-us/office/office365/howto/setup-development-environment#bk_Office365Account) Puede registrarse para [una suscripción de Office 365 Developer](https://msdn.microsoft.com/en-us/office/office365/howto/setup-development-environment#bk_Office365Account), que incluye los recursos que necesita para comenzar a crear aplicaciones de Office 365.
 
-## Registrar la aplicación
+## <a name="register-the-application"></a>Registrar la aplicación
 
 1. Inicie sesión en el [Portal de registro de la aplicación](https://apps.dev.microsoft.com/) mediante su cuenta personal, profesional o educativa.
 
@@ -37,19 +37,19 @@ Este ejemplo necesita lo siguiente:
 
 5. En **Secretos de aplicación**, seleccione **Generar nueva contraseña**. Copie la contraseña del cuadro de diálogo de **Nueva contraseña generada**.
 
-   Usará el Id. de la aplicación y la contraseña para configurar la aplicación de ejemplo en la sección siguiente. 
+   Usará el identificador de la aplicación y la contraseña para configurar la aplicación de ejemplo en la sección siguiente. 
 
 6. En **Plataformas**, seleccione **Agregar plataforma**.
 
 7. Seleccione **Web**.
 
-8. Asegúrese de que la casilla **Permitir flujo implícita** está activada e introduzca *https://localhost:44300 /* como el URI de redirección. 
+8. Asegúrese de que la casilla **Permitir flujo implícita** está activada e introduzca *http://localhost:55065/* como el URI de redirección. 
 
    La opción **Permitir flujo implícito** permite el flujo híbrido. Durante la autenticación, esto permite que la aplicación reciba la información de inicio de sesión (id_token) y artefactos (en este caso, un código de autorización) que la aplicación puede usar para obtener un token de acceso.
 
 9. Seleccione **Guardar**.
 
-## Compilar y ejecutar el ejemplo
+## <a name="build-and-run-the-sample"></a>Compilar y ejecutar el ejemplo
 
 1. Descargue o clone el ejemplo de Microsoft Graph Connect para ASP.NET 4.6
 
@@ -67,7 +67,11 @@ Este ejemplo necesita lo siguiente:
 
 7. De forma opcional, modifique la lista de destinatarios y el asunto del correo electrónico y, después, seleccione el botón **Enviar correo electrónico**. Cuando se envía el correo, se muestra un mensaje de Operación correcta debajo del botón.
 
-## Código de nota
+8. Pasos siguientes: Consulte el [Ejemplo de fragmentos de código de muestra de Microsoft Graph para ASP.NET 4.6](https://github.com/microsoftgraph/aspnet-snippets-sample) para ver ejemplos de operaciones habituales con Microsoft Graph.
+
+## <a name="code-of-note"></a>Código de nota
+
+> Nota: Para entender el código para llamar a la API de Microsoft Graph en una aplicación ASP.NET MVC, consulte [Empezar a usar Microsoft Graph en una aplicación ASP.NET 4.6 MVC](https://graph.microsoft.io/en-us/docs/platform/aspnetmvc).
 
 - [Startup.Auth.cs](/Microsoft%20Graph%20SDK%20ASPNET%20Connect/Microsoft%20Graph%20SDK%20ASPNET%20Connect/App_Start/Startup.Auth.cs). Autentica al usuario actual e inicializa la memoria caché de token del ejemplo.
 
@@ -83,26 +87,27 @@ Este ejemplo necesita lo siguiente:
 
 - [Graph.cshtml](/Microsoft%20Graph%20SDK%20ASPNET%20Connect/Microsoft%20Graph%20SDK%20ASPNET%20Connect/Views/Home/Graph.cshtml). Contiene la interfaz de usuario de ejemplo. 
 
-## Preguntas y comentarios
+## <a name="questions-and-comments"></a>Preguntas y comentarios
 
 Nos encantaría recibir sus comentarios acerca de este ejemplo. Puede enviarnos sus preguntas y sugerencias a través de la sección [Problemas](https://github.com/microsoftgraph/aspnet-connect-sample/issues) de este repositorio.
 
-Sus comentarios son importantes para nosotros. Conecte con nosotros en [Desbordamiento de pila](http://stackoverflow.com/questions/tagged/microsoftgraph). Etiquete sus preguntas con [MicrosoftGraph].
+Sus comentarios son importantes para nosotros. Conecte con nosotros en [Stack Overflow](http://stackoverflow.com/questions/tagged/microsoftgraph). Etiquete sus preguntas con [MicrosoftGraph].
 
-## Colaboradores ##
+## <a name="contributing"></a>Colaboradores ##
 
 Si le gustaría contribuir a este ejemplo, consulte [CONTRIBUTING.md](CONTRIBUTING.md).
 
 Este proyecto ha adoptado el [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/) (Código de conducta de código abierto de Microsoft). Para obtener más información, consulte las [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) (Preguntas más frecuentes del código de conducta) o póngase en contacto con [opencode@microsoft.com](mailto:opencode@microsoft.com) con otras preguntas o comentarios.
 
-## Recursos adicionales
+## <a name="additional-resources"></a>Recursos adicionales
 
 - [Otros ejemplos de Connect de Microsoft Graph](https://github.com/MicrosoftGraph?utf8=%E2%9C%93&query=-Connect)
 - [Información general de Microsoft Graph](http://graph.microsoft.io)
 - [Ejemplos de código de Office Developer](http://dev.office.com/code-samples)
-- [Centro para desarrolladores de Office](http://dev.office.com/)
+- [Centro de desarrollo de Office](http://dev.office.com/)
 
-## Copyright
+## <a name="copyright"></a>Copyright
 Copyright (c) 2016 Microsoft. Todos los derechos reservados.
+
 
 
