@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft Graph SDK ASPNET Connect", "Microsoft Graph SDK ASPNET Connect\Microsoft Graph SDK ASPNET Connect.csproj", "{7E86C505-414C-4D01-8DC3-940DCEEFD956}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{BB70C468-5D1E-45BF-AD19-DEFE48C973C6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7E86C505-414C-4D01-8DC3-940DCEEFD956} = {7E86C505-414C-4D01-8DC3-940DCEEFD956}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
