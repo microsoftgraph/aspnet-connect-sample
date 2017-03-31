@@ -39,6 +39,14 @@ namespace Microsoft_Graph_SDK_ASPNET_Connect.Models
             // Get current user photo
             Stream photoStream = await GetCurrentUserPhotoStreamAsync(graphClient);
 
+
+            // If the user doesn't have a photo, or if the user account is MSA, we use a default photo
+
+            if ( photoStream == null)
+            {
+                photoStream = System.IO.File.OpenRead(System.Web.Hosting.HostingEnvironment.MapPath("/Content/test.jpg"));
+            }
+
             MemoryStream photoStreamMS = new MemoryStream();
             // Copy stream to MemoryStream object so that it can be converted to byte array.
             photoStream.CopyTo(photoStreamMS);
@@ -101,7 +109,7 @@ namespace Microsoft_Graph_SDK_ASPNET_Connect.Models
 
             }
 
-
+            // If the user account is MSA (not work or school), the service will throw an exception.
             catch (ServiceException)
             {
                 return null;
