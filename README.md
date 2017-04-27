@@ -27,7 +27,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 - [Office dev center](http://dev.office.com/)
 
 ## Copyright
-Copyright (c) 2016 Microsoft. All rights reserved.
+Copyright (c) 2017 Microsoft. All rights reserved.
 
 
 
