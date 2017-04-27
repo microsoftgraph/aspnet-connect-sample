@@ -22,9 +22,8 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 ## Additional resources
 
 - [Other Microsoft Graph Connect samples](https://github.com/MicrosoftGraph?utf8=%E2%9C%93&query=-Connect)
-- [Microsoft Graph overview](http://graph.microsoft.io)
-- [Office developer code samples](http://dev.office.com/code-samples)
-- [Office dev center](http://dev.office.com/)
+- [Microsoft Graph overview](https://developer.microsoft.com/graph)
+- [Office dev center](https://dev.office.com/)
 
 ## Copyright
 Copyright (c) 2017 Microsoft. All rights reserved.
