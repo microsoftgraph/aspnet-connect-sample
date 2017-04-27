@@ -135,7 +135,6 @@ namespace Microsoft_Graph_REST_ASPNET_Connect.Models
             }
             catch (ServiceException ex)
             {
-                //tip: Right click and check connected services and make sure you have the File.Upload permissions.
                 Console.WriteLine(ex.Error.Message);
                 return null;
             }
