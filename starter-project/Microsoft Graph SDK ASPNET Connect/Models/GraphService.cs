@@ -6,6 +6,7 @@
 using Resources;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace Microsoft_Graph_SDK_ASPNET_Connect.Models

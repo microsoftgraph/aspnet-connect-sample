@@ -52,13 +52,14 @@ namespace Microsoft_Graph_SDK_ASPNET_Connect.Controllers
                 return View("Graph");
             }
 
-            // Build the email message.
-            Message message = graphService.BuildEmailMessage(Request.Form["recipients"], Request.Form["subject"]);
             try
             {
 
                 // Initialize the GraphServiceClient.
                 GraphServiceClient graphClient = SDKHelper.GetAuthenticatedClient();
+
+                // Build the email message.
+                Message message = await graphService.BuildEmailMessage(graphClient, Request.Form["recipients"], Request.Form["subject"]);
 
                 // Send the email.
                 await graphService.SendEmail(graphClient, message);
