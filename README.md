@@ -4,8 +4,7 @@ This sample shows how you can use the Office 365 Connected Service in Visual Stu
 
 ## Configure the sample
 
-See [Call Office 365 Services in Visual Studio with the Microsoft Graph](https://developer.microsoft.com/en-us/graph/get-started/office-365-connected-services) for instructions.
-
+See [Call Office 365 Services in Visual Studio with the Microsoft Graph](https://developer.microsoft.com/en-us/graph/docs/concepts/office_365_connected_services) for instructions on how to get started. You can skip ahead to the [Add the connected service step](https://developer.microsoft.com/en-us/graph/docs/concepts/office_365_connected_services#add-the-connected-service)
 
 ## Questions and comments
 
