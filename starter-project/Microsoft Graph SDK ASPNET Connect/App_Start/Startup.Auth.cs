@@ -28,9 +28,64 @@ namespace Microsoft_Graph_SDK_ASPNET_Connect
         private static string appSecret = ConfigurationManager.AppSettings["ida:AppSecret"];
         private static string redirectUri = ConfigurationManager.AppSettings["ida:RedirectUri"];
         private static string graphScopes = ConfigurationManager.AppSettings["ida:GraphScopes"];
-        
+
         public void ConfigureAuth(IAppBuilder app)
         {
+            app.SetDefaultSignInAsAuthenticationType(CookieAuthenticationDefaults.AuthenticationType);
+
+            app.UseCookieAuthentication(new CookieAuthenticationOptions());
+
+            app.UseOpenIdConnectAuthentication(
+                new OpenIdConnectAuthenticationOptions
+                {
+
+                    // The `Authority` represents the Microsoft v2.0 authentication and authorization service.
+                    // The `Scope` describes the permissions that your app will need. See https://azure.microsoft.com/documentation/articles/active-directory-v2-scopes/                    
+                    ClientId = appId,
+                    Authority = "https://login.microsoftonline.com/common/v2.0",
+                    PostLogoutRedirectUri = redirectUri,
+                    RedirectUri = redirectUri,
+                    Scope = "openid email profile offline_access " + graphScopes,
+                    TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = false,
+                        // In a real application you would use IssuerValidator for additional checks, 
+                        // like making sure the user's organization has signed up for your app.
+                        //     IssuerValidator = (issuer, token, tvp) =>
+                        //     {
+                        //         if (MyCustomTenantValidation(issuer)) 
+                        //             return issuer;
+                        //         else
+                        //             throw new SecurityTokenInvalidIssuerException("Invalid issuer");
+                        //     },
+                    },
+                    Notifications = new OpenIdConnectAuthenticationNotifications
+                    {
+                        AuthorizationCodeReceived = async (context) =>
+                        {
+                            var code = context.Code;
+                            string signedInUserID = context.AuthenticationTicket.Identity.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+                            TokenCache userTokenCache = new SessionTokenCache(signedInUserID,
+                                context.OwinContext.Environment["System.Web.HttpContextBase"] as HttpContextBase).GetMsalCacheInstance();
+                            ConfidentialClientApplication cca = new ConfidentialClientApplication(
+                                appId,
+                                redirectUri,
+                                new ClientCredential(appSecret),
+                                userTokenCache,
+                                null);
+                            string[] scopes = graphScopes.Split(new char[] { ' ' });
+
+                            AuthenticationResult result = await cca.AcquireTokenByAuthorizationCodeAsync(code, scopes);
+                        },
+                        AuthenticationFailed = (context) =>
+                        {
+                            context.HandleResponse();
+                            context.Response.Redirect("/Error?message=" + context.Exception.Message);
+                            return Task.FromResult(0);
+                        }
+                    }
+                });
         }
     }
 }

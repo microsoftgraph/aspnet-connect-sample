@@ -7,12 +7,15 @@ using Microsoft.Identity.Client;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OpenIdConnect;
 using Microsoft_Graph_SDK_ASPNET_Connect.TokenStorage;
-using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
+using Microsoft.Graph;
 using Resources;
+using System;
 
 namespace Microsoft_Graph_SDK_ASPNET_Connect.Helpers
 {
@@ -27,7 +30,7 @@ namespace Microsoft_Graph_SDK_ASPNET_Connect.Helpers
         private SessionTokenCache tokenCache { get; set; }
 
         private static readonly SampleAuthProvider instance = new SampleAuthProvider();
-        private SampleAuthProvider() { } 
+        private SampleAuthProvider() { }
 
         public static SampleAuthProvider Instance
         {
@@ -40,7 +43,38 @@ namespace Microsoft_Graph_SDK_ASPNET_Connect.Helpers
         // Gets an access token. First tries to get the token from the token cache.
         public async Task<string> GetUserAccessTokenAsync()
         {
-            return string.Empty;
+            string signedInUserID = ClaimsPrincipal.Current.FindFirst(ClaimTypes.NameIdentifier).Value;
+            HttpContextWrapper httpContext = new HttpContextWrapper(HttpContext.Current);
+            TokenCache userTokenCache = new SessionTokenCache(signedInUserID, httpContext).GetMsalCacheInstance();
+            //var cachedItems = tokenCache.ReadItems(appId); // see what's in the cache
+
+            ConfidentialClientApplication cca = new ConfidentialClientApplication(
+                appId,
+                redirectUri,
+                new ClientCredential(appSecret),
+                userTokenCache,
+                null);
+
+            try
+            {
+                AuthenticationResult result = await cca.AcquireTokenSilentAsync(scopes.Split(new char[] { ' ' }), cca.Users.First());
+                return result.AccessToken;
+            }
+
+            // Unable to retrieve the access token silently.
+            catch (Exception)
+            {
+                HttpContext.Current.Request.GetOwinContext().Authentication.Challenge(
+                    new AuthenticationProperties() { RedirectUri = "/" },
+                    OpenIdConnectAuthenticationDefaults.AuthenticationType);
+
+                throw new ServiceException(
+                    new Error
+                    {
+                        Code = GraphErrorCode.AuthenticationFailure.ToString(),
+                        Message = Resource.Error_AuthChallengeNeeded,
+                    });
+            }
         }
     }
 }
