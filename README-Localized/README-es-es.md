@@ -1,4 +1,4 @@
-# <a name="microsoft-graph-connect-sample-for-asp.net-4.6"></a>Ejemplo Connect de Microsoft Graph para ASP.NET 4.6
+# <a name="microsoft-graph-connect-sample-for-aspnet-46"></a>Ejemplo Connect de Microsoft Graph para ASP.NET 4.6
 
 ## <a name="table-of-contents"></a>Tabla de contenido
 
@@ -10,11 +10,13 @@
 * [Colaboradores](#contributing)
 * [Recursos adicionales](#additional-resources)
 
-Este ejemplo muestra cómo conectar una aplicación web ASP.NET 4.6 MVC a una cuenta profesional o educativa de Microsoft (Azure Active Directory) o a una cuenta personal (Microsoft) usando la API de Microsoft Graph para enviar un correo electrónico. Usa la [biblioteca del cliente de Microsoft Graph .NET](https://github.com/microsoftgraph/msgraph-sdk-dotnet) para trabajar con los datos devueltos por Microsoft Graph. 
+Este ejemplo muestra cómo conectar una aplicación web de ASP.NET 4.6 MVC a una cuenta profesional o educativa de Microsoft (Azure Active Directory) o a una cuenta personal (Microsoft) usando la API de Microsoft Graph para recuperar la imagen del perfil de un usuario, cargar la imagen en OneDrive y enviar un correo electrónico que contiene la foto como un archivo adjunto y el vínculo para compartir en su texto. Usa la [biblioteca del cliente .NET de Microsoft Graph](https://github.com/microsoftgraph/msgraph-sdk-dotnet) para trabajar con los datos devueltos por Microsoft Graph. 
 
 Además, el ejemplo usa la [biblioteca de autenticación de Microsoft (MSAL)](https://www.nuget.org/packages/Microsoft.Identity.Client/) para la autenticación. El SDK de MSAL ofrece características para trabajar con el [punto de conexión v2.0 de Azure AD](https://azure.microsoft.com/en-us/documentation/articles/active-directory-appmodel-v2-overview), lo que permite a los desarrolladores escribir un flujo de código único que controla la autenticación para las cuentas profesionales, educativas (Azure Active Directory) o las cuentas personales (Microsoft).
 
- > **Nota** El SDK de MSAL está actualmente en versión preliminar y, por tanto, no debe usarse en código de producción. Se usa aquí únicamente con fines ilustrativos.
+## <a name="important-note-about-the-msal-preview"></a>Nota importante acerca de la vista previa MSAL
+
+Esta biblioteca es apta para utilizarla en un entorno de producción. Ofrecemos la misma compatibilidad de nivel de producción de esta biblioteca que la de las bibliotecas de producción actual. Durante la vista previa podemos realizar cambios en la API, el formato de caché interna y otros mecanismos de esta biblioteca, que deberá tomar junto con correcciones o mejoras. Esto puede afectar a la aplicación. Por ejemplo, un cambio en el formato de caché puede afectar a los usuarios, como que se les pida que vuelvan a iniciar sesión. Un cambio de API puede requerir que actualice su código. Cuando ofrecemos la versión de disponibilidad General, deberá actualizar a la versión de disponibilidad General dentro de seis meses, ya que las aplicaciones escritas mediante una versión de vista previa de biblioteca puede que ya no funcionen.
 
 ## <a name="prerequisites"></a>Requisitos previos
 
@@ -43,11 +45,11 @@ Este ejemplo necesita lo siguiente:
 
 7. Seleccione **Web**.
 
-8. Asegúrese de que la casilla **Permitir flujo implícita** está activada e introduzca *http://localhost:55065/* como el URI de redirección. 
+8. Asegúrese de que la casilla **Permitir flujo implícito** esté seleccionada y escriba *http://localhost:55065/* como URI de redireccionamiento. 
 
    La opción **Permitir flujo implícito** permite el flujo híbrido. Durante la autenticación, esto permite que la aplicación reciba la información de inicio de sesión (id_token) y artefactos (en este caso, un código de autorización) que la aplicación puede usar para obtener un token de acceso.
 
-9. Seleccione **Guardar**.
+9. Elija **Guardar**.
 
 ## <a name="build-and-run-the-sample"></a>Compilar y ejecutar el ejemplo
 
@@ -91,7 +93,7 @@ Este ejemplo necesita lo siguiente:
 
 Nos encantaría recibir sus comentarios acerca de este ejemplo. Puede enviarnos sus preguntas y sugerencias a través de la sección [Problemas](https://github.com/microsoftgraph/aspnet-connect-sample/issues) de este repositorio.
 
-Sus comentarios son importantes para nosotros. Conecte con nosotros en [Stack Overflow](http://stackoverflow.com/questions/tagged/microsoftgraph). Etiquete sus preguntas con [MicrosoftGraph].
+Su opinión es importante para nosotros. Conecte con nosotros en [Desbordamiento de pila](http://stackoverflow.com/questions/tagged/microsoftgraph). Etiquete sus preguntas con [MicrosoftGraph].
 
 ## <a name="contributing"></a>Colaboradores ##
 

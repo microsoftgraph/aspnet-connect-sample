@@ -1,4 +1,4 @@
-# <a name="microsoft-graph-connect-sample-for-asp.net-4.6"></a>Exemplo de conexão com o Microsoft Graph para ASP.NET 4.6
+# <a name="microsoft-graph-connect-sample-for-aspnet-46"></a>Exemplo de conexão com o Microsoft Graph para ASP.NET 4.6
 
 ## <a name="table-of-contents"></a>Sumário
 
@@ -10,11 +10,13 @@
 * [Colaboração](#contributing)
 * [Recursos adicionais](#additional-resources)
 
-Este exemplo mostra como conectar um aplicativo Web do ASP.NET 4.6 MVC a uma conta comercial ou escolar (Azure Active Directory) da Microsoft ou uma conta pessoal (Microsoft) usando a API do Microsoft Graph API para enviar emails. O exemplo usa as [Biblioteca de Cliente do Microsoft Graph .NET](https://github.com/microsoftgraph/msgraph-sdk-dotnet) para trabalhar com dados retornados pelo Microsoft Graph. 
+Este exemplo mostra como conectar um aplicativo Web ASP.NET 4.6 MVC a uma conta corporativa ou de estudante (Azure Active Directory) da Microsoft ou a uma conta pessoal (Microsoft) usando a API do Microsoft Graph para recuperar a imagem de perfil de um usuário, carregar a imagem para o OneDrive e enviar um email que contém a foto como anexo e o link de compartilhamento em seu texto. O exemplo usa a [Biblioteca de Cliente .NET do Microsoft Graph](https://github.com/microsoftgraph/msgraph-sdk-dotnet) para trabalhar com dados retornados pelo Microsoft Graph. 
 
 Além disso, o exemplo usa a [Biblioteca de Autenticação da Microsoft (MSAL)](https://www.nuget.org/packages/Microsoft.Identity.Client/) para autenticação. O SDK da MSAL fornece recursos para trabalhar com o [ponto de extremidade do Microsoft Azure AD versão 2.0](https://azure.microsoft.com/en-us/documentation/articles/active-directory-appmodel-v2-overview), que permite aos desenvolvedores gravar um único fluxo de código para tratar da autenticação de contas pessoais (Microsoft), corporativas ou de estudantes (Azure Active Directory).
 
- > **Observação** No momento, o SDK da MSAL encontra-se em pré-lançamento e como tal não deve ser usado no código de produção. Isso é usado apenas para fins ilustrativos
+## <a name="important-note-about-the-msal-preview"></a>Observação importante sobre a Visualização da MSAL
+
+Esta biblioteca é adequada para uso em um ambiente de produção. Ela recebe o mesmo suporte de nível de produção que fornecemos às nossas bibliotecas de produção atuais. Durante a visualização, podemos fazer alterações na API, no formato de cache interno e em outros mecanismos desta biblioteca, que você será solicitado a implementar juntamente com correções de bugs ou melhorias de recursos. Isso pode impactar seu aplicativo. Por exemplo, uma alteração no formato de cache pode impactar seus usuários, exigindo que eles entrem novamente. Uma alteração na API pode requerer que você atualize seu código. Quando fornecermos a versão de Disponibilidade Geral, você será solicitado a atualizar a versão de Disponibilidade Geral no prazo de seis meses, pois os aplicativos escritos usando uma versão de visualização da biblioteca podem não funcionar mais.
 
 ## <a name="prerequisites"></a>Pré-requisitos
 
@@ -43,7 +45,7 @@ Este exemplo requer o seguinte:
 
 7. Escolha **Web**.
 
-8. Não deixe de marcar a caixa de diálogo **Permitir Fluxo Implícito** e insira *http://localhost:55065/* como o URI de Redirecionamento. 
+8. Verifique se a caixa de seleção **Permitir Fluxo Implícito** está selecionada e insira *http://localhost:55065/* como o URI de redirecionamento. 
 
    A opção **Permitir Fluxo Implícito** habilita o fluxo híbrido. Durante a autenticação, isso permite que o aplicativo receba informações de entrada (o id_token) e artefatos (neste caso, um código de autorização) que o aplicativo pode usar para obter um token de acesso.
 
@@ -61,7 +63,7 @@ Este exemplo requer o seguinte:
 
    >Caso receba mensagens de erro durante a instalação de pacotes, verifique se o caminho para o local onde você colocou a solução não é muito longo ou extenso. Para resolver esse problema, coloque a solução junto à raiz da unidade.
 
-5. Entre com sua conta pessoal ou sua conta comercial ou escolar e conceda as permissões solicitadas.
+5. Entre com sua conta pessoal,corporativa ou de estudante, e conceda as permissões solicitadas.
 
 6. Escolha o botão **Obter endereço de email**. Quando a operação for concluída, o endereço de email do usuário conectado será exibido na página.
 
