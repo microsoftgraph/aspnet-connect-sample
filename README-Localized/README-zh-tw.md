@@ -1,4 +1,4 @@
-# <a name="microsoft-graph-connect-sample-for-asp.net-4.6"></a>Microsoft Graph Connect 範例 (適用於 ASP.NET 4.6)
+# <a name="microsoft-graph-connect-sample-for-aspnet-46"></a>Microsoft Graph Connect 範例 (適用於 ASP.NET 4.6)
 
 ## <a name="table-of-contents"></a>目錄
 
@@ -10,11 +10,13 @@
 * [參與](#contributing)
 * [其他資源](#additional-resources)
 
-這個範例示範如何使用 Microsoft Graph API 將 ASP.NET 4.6 MVC Web 應用程式連線至 Microsoft 工作或學校 (Azure Active Directory) 或個人 (Microsoft) 帳戶，以傳送郵件。它會使用 [Microsoft Graph.NET 用戶端程式庫](https://github.com/microsoftgraph/msgraph-sdk-dotnet)，使用 Microsoft Graph 所傳回的資料。 
+這個範例會顯示如何使用 Microsoft Graph API 將 ASP.NET 4.6 MVC Web 應用程式連線至 Microsoft 工作或學校 (Azure Active Directory) 或個人 (Microsoft) 帳戶，用來擷取使用者的基本資料圖片、將圖片上傳至 OneDrive，並傳送含有相片作為附件且文字中包含共用連結的電子郵件。 它會使用 [Microsoft Graph.NET 用戶端程式庫](https://github.com/microsoftgraph/msgraph-sdk-dotnet)，使用 Microsoft Graph 所傳回的資料。 
 
 此外，範例會使用 [Microsoft 驗證程式庫 (MSAL)](https://www.nuget.org/packages/Microsoft.Identity.Client/) 進行驗證。MSAL SDK 提供功能以使用 [Azure AD v2.0 端點](https://azure.microsoft.com/en-us/documentation/articles/active-directory-appmodel-v2-overview)，可讓開發人員撰寫單一程式碼流程，控制工作或學校 (Azure Active Directory) 和個人 (Microsoft) 帳戶的驗證。
 
- > **附註** MSAL SDK 目前是發行前版本，因此不應該用於實際執行程式碼。在這裡僅供說明目的使用。
+## <a name="important-note-about-the-msal-preview"></a>MSAL 預覽相關的重要事項
+
+這個程式庫適合在實際執行環境中使用。 我們為我們目前的實際執行程式庫提供與此程式庫相同的實際執行層級支援。 在預覽期間，我們可能會變更此程式庫的 API、內部快取格式和其他機制，您將必須對此程式庫進行錯誤修復或增強功能。 這可能會影響您的應用程式。 舉例來說，變更快取格式可能會影響您的使用者，例如需要使用者重新登入。 API 變更可能需要更新您的程式碼。 當我們提供「一般可用性」版本時，將要求您在六個月內更新至「一般可用性」版本，因為使用程式庫預覽版本所撰寫的應用程式可能無法運作。
 
 ## <a name="prerequisites"></a>必要條件
 
@@ -69,7 +71,7 @@
 
 8. 後續步驟：查看 [Microsoft Graph 程式碼片段範例 (適用於 ASP.NET 4.6)](https://github.com/microsoftgraph/aspnet-snippets-sample)，以查看一般 Microsoft Graph 作業的範例。
 
-## <a name="code-of-note"></a>附註的程式碼
+## <a name="code-of-note"></a>程式碼附註
 
 > 附註：若要了解在 ASP.NET MVC 應用程式中用於呼叫 Microsoft Graph API 的程式碼，請參閱[在 ASP.NET 4.6 MVC 應用程式中開始使用 Microsoft Graph](https://graph.microsoft.io/en-us/docs/platform/aspnetmvc)。
 

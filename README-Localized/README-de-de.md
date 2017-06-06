@@ -1,4 +1,4 @@
-# <a name="microsoft-graph-connect-sample-for-asp.net-4.6"></a>Microsoft Graph Connect-Beispiel für ASP.NET 4.6
+# <a name="microsoft-graph-connect-sample-for-aspnet-46"></a>Microsoft Graph Connect-Beispiel für ASP.NET 4.6
 
 ## <a name="table-of-contents"></a>Inhalt
 
@@ -8,15 +8,17 @@
 * [Relevanter Code](#code-of-note)
 * [Fragen und Kommentare](#questions-and-comments)
 * [Mitwirkung](#contributing)
-* [Weitere Ressourcen](#additional-resources)
+* [Zusätzliche Ressourcen](#additional-resources)
 
-In diesem Beispiel wird gezeigt, wie eine 4.6 ASP.NET-MVC-Web-App mit einem Microsoft-Geschäfts- oder Schulkonto (Azure Active Directory) oder mit einem persönlichen Konto (Microsoft) mithilfe der Microsoft Graph-API zum Senden einer E-Mail verbunden wird. Es verwendet die [Microsoft Graph .NET-Clientbibliothek](https://github.com/microsoftgraph/msgraph-sdk-dotnet), um mit Daten zu arbeiten, die von Microsoft Graph zurückgegeben werden. 
+Dieses Beispiel zeigt, wie Sie eine ASP.NET 4.6 MVC-Web-App mit einem Microsoft-Geschäfts-, Schul- oder Unikonto (Azure Active Directory) oder einem persönlichen (Microsoft) Konto anhand der Microsoft Graph API verbinden, um das Profilbild eines Benutzers abzurufen, das Bild in OneDrive hochzuladen und eine E-Mail zu senden, das das Foto als Anhang und den Freigabelink als Text enthält. Es verwendet die [Microsoft Graph .NET-Clientbibliothek](https://github.com/microsoftgraph/msgraph-sdk-dotnet), um mit Daten zu arbeiten, die von Microsoft Graph zurückgegeben werden. 
 
 Das Beispiel verwendet außerdem die [Microsoft-Authentifizierungsbibliothek (MSAL)](https://www.nuget.org/packages/Microsoft.Identity.Client/) für die Authentifizierung. Das MSAL-SDK bietet Features für die Arbeit mit dem [Azure AD v2.0-Endpunkt](https://azure.microsoft.com/en-us/documentation/articles/active-directory-appmodel-v2-overview), der es Entwicklern ermöglicht, einen einzelnen Codefluss zu schreiben, der die Authentifizierung sowohl für Geschäfts- oder Schulkonten (Azure Active Directory) als auch für persönliche Konten (Microsoft) verarbeitet. 
 
- > **Hinweis** Das MSAL-SDK befindet sich derzeit in der Vorabversion und sollte daher nicht in Produktionscode verwendet werden. Es dient hier nur zur Veranschaulichung
+## <a name="important-note-about-the-msal-preview"></a>Wichtiger Hinweis zur MSAL-Vorschau
 
-## <a name="prerequisites"></a>Anforderungen
+Diese Bibliothek eignet sich für die Verwendung in einer Produktionsumgebung. Wir bieten für diese Bibliothek den gleichen Support auf Produktionsebene wie für alle anderen aktuellen Produktionsbibliotheken. Während der Vorschau nehmen wir möglicherweise Änderungen an der API, dem internen Cacheformat und anderen Mechanismen dieser Bibliothek vor, die Sie zusammen mit Fehlerbehebungen oder Funktionsverbesserungen übernehmen müssen. Dies kann sich auf Ihre Anwendung auswirken. So kann sich eine Änderung des Cacheformats beispielsweise auf die Benutzer auswirken, indem sie sich z. B. erneut anmelden müssen. Eine Änderung der API kann dazu führen, dass Sie den Code aktualisieren müssen. Wenn wir das allgemein verfügbare Release bereitstellen, müssen Sie innerhalb von sechs Monaten auf die allgemein verfügbare Version aktualisieren, da Anwendungen, die mit einer Vorschauversion der Bibliothek erstellt wurden, möglicherweise nicht mehr funktionieren.
+
+## <a name="prerequisites"></a>Voraussetzungen
 
 Für dieses Beispiel ist Folgendes erforderlich:  
 

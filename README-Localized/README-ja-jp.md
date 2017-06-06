@@ -1,4 +1,4 @@
-﻿# <a name="microsoft-graph-connect-sample-for-asp.net-4.6"></a>ASP.NET 4.6 用 Microsoft Graph Connect のサンプル
+# <a name="microsoft-graph-connect-sample-for-aspnet-46"></a>ASP.NET 4.6 用 Microsoft Graph Connect のサンプル
 
 ## <a name="table-of-contents"></a>目次
 
@@ -10,11 +10,13 @@
 * [投稿](#contributing)
 * [その他のリソース](#additional-resources)
 
-このサンプルは、メールを送信するための Microsoft Graph API を使用して、Microsoft の職場または学校 (Azure Active Directory) アカウント、あるいは個人用 (Microsoft) アカウントに ASP.NET 4.6 MVC のWeb アプリを接続する方法を示します。[Microsoft Graph .NET クライアント ライブラリ](https://github.com/microsoftgraph/msgraph-sdk-dotnet) を使用して、Microsoft Graph が返すデータを操作します。 
+このサンプルでは、Microsoft Graph API を使って ASP.NET 4.6 MVC Web アプリを Microsoft の職場または学校 (Azure Active Directory) アカウントまたは個人用 (Microsoft) アカウントに接続して、ユーザーのプロフィール画像の取得、OneDrive への画像のアップロード、電子メール (画像が添付され、共有リンクがテキストに含まれる) の送信を行う方法を示します。 [Microsoft Graph .NET クライアント ライブラリ](https://github.com/microsoftgraph/msgraph-sdk-dotnet)を使用して、Microsoft Graph が返すデータを操作します。 
 
 また、サンプルでは認証に [Microsoft 認証ライブラリ (MSAL)](https://www.nuget.org/packages/Microsoft.Identity.Client/) を使用します。MSAL SDK には、[Azure AD v2 0 エンドポイント](https://azure.microsoft.com/en-us/documentation/articles/active-directory-appmodel-v2-overview)を操作するための機能が用意されており、開発者は職場または学校 (Azure Active Directory) アカウント、および個人用 (Microsoft) アカウントの両方に対する認証を処理する 1 つのコード フローを記述することができます。
 
- > **注** 現在、MSAL SDK はプレリリース段階であるため、運用コードでは使用できません。ここでは、例示目的のみに使用されています
+## <a name="important-note-about-the-msal-preview"></a>MSAL プレビューに関する重要な注意事項
+
+このライブラリは、運用環境での使用に適しています。 このライブラリに対しては、現在の運用ライブラリと同じ運用レベルのサポートを提供します。 プレビュー中にこのライブラリの API、内部キャッシュの形式、および他のメカニズムを変更する場合があります。これは、バグの修正や機能強化の際に実行する必要があります。 これは、アプリケーションに影響を与える場合があります。 例えば、キャッシュ形式を変更すると、再度サインインが要求されるなどの影響をユーザーに与えます。 API を変更すると、コードの更新が要求される場合があります。 一般提供リリースが実施されると、プレビュー バージョンを使って作成されたアプリケーションは動作しなくなるため、6 か月以内に一般提供バージョンに更新することが求められます。
 
 ## <a name="prerequisites"></a>前提条件
 
@@ -35,7 +37,7 @@
 
 4. アプリケーション ID をコピーします。これは、アプリの一意識別子です。 
 
-5. **[アプリケーション シークレット]** で、**[新しいパスワードを生成する]** を選択します。**[新しいパスワードを生成する]** ダイアログからパスワードをコピーします。
+5. **[アプリケーション シークレット]** で、**[新しいパスワードを生成する]** を選びます。**[新しいパスワードを生成する]** ダイアログからパスワードをコピーします。
 
    次のセクションで、アプリケーション ID とパスワードを使用してサンプル アプリを構成します。 
 
@@ -91,7 +93,7 @@
 
 このサンプルに関するフィードバックをお寄せください。質問や提案につきましては、このリポジトリの「[問題](https://github.com/microsoftgraph/aspnet-connect-sample/issues)」セクションで送信できます。
 
-お客様からのフィードバックを重視しています。[Stack Overflow](http://stackoverflow.com/questions/tagged/microsoftgraph)でご連絡いただけます。ご質問には [MicrosoftGraph] のタグを付けてください。
+お客様からのフィードバックを重視しています。[スタック オーバーフロー](http://stackoverflow.com/questions/tagged/microsoftgraph)でご連絡いただけます。ご質問には [MicrosoftGraph] のタグを付けてください。
 
 ## <a name="contributing"></a>投稿 ##
 
@@ -107,7 +109,7 @@
 - [Office デベロッパー センター](http://dev.office.com/)
 
 ## <a name="copyright"></a>著作権
-Copyright (c) 2016 Microsoft.All rights reserved.
+Copyright (c) 2016 Microsoft. All rights reserved.
 
 
 
