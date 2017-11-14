@@ -39,8 +39,6 @@ namespace Microsoft_Graph_SDK_ASPNET_Connect.Controllers
                 HttpContext.GetOwinContext().Authentication.SignOut(OpenIdConnectAuthenticationDefaults.AuthenticationType, CookieAuthenticationDefaults.AuthenticationType);
             }
 
-            SDKHelper.SignOutClient();
-
             // Send an OpenID Connect sign-out request. 
             HttpContext.GetOwinContext().Authentication.SignOut(
               CookieAuthenticationDefaults.AuthenticationType);

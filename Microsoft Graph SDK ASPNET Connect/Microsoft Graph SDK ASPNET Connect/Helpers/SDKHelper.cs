@@ -10,7 +10,6 @@ namespace Microsoft_Graph_SDK_ASPNET_Connect.Helpers
 {
     public class SDKHelper
     {   
-        private static GraphServiceClient graphClient = null;
 
         // Get an authenticated Microsoft Graph Service client.
         public static GraphServiceClient GetAuthenticatedClient()
@@ -28,11 +27,6 @@ namespace Microsoft_Graph_SDK_ASPNET_Connect.Helpers
                         requestMessage.Headers.Add("SampleID", "aspnet-connect-sample");
                     }));
             return graphClient;
-        }
-
-        public static void SignOutClient()
-        {
-            graphClient = null;
         }
     }
 }
