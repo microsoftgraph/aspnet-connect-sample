@@ -1,4 +1,4 @@
-# <a name="microsoft-graph-connect-sample-for-asp.net-4.6"></a>Exemple de connexion de Microsoft Graph pour ASP.NET 4.6
+# <a name="microsoft-graph-connect-sample-for-aspnet-46"></a>Exemple de connexion de Microsoft Graph pour ASP.NET 4.6
 
 ## <a name="table-of-contents"></a>Sommaire
 
@@ -10,11 +10,13 @@
 * [Contribution](#contributing)
 * [Ressources supplémentaires](#additional-resources)
 
-Cet exemple montre comment connecter une application web ASP.NET 4.6 MVC à un compte professionnel ou scolaire (Azure Active Directory) ou personnel (Microsoft) à l’aide de l’API Microsoft Graph pour envoyer un e-mail. Il utilise la [bibliothèque Microsoft Graph .NET](https://github.com/microsoftgraph/msgraph-sdk-dotnet) pour exploiter les données renvoyées par Microsoft Graph. 
+Cet exemple montre comment connecter une application web ASP.NET 4.6 MVC à un compte professionnel ou scolaire (Azure Active Directory), ou personnel (Microsoft) à l’aide de l’API Microsoft Graph pour récupérer l’image de profil d’un utilisateur, télécharger l’image vers OneDrive, et envoyer un courrier électronique contenant la photo en tant que pièce jointe et le lien de partage dans son texte. Il utilise la [bibliothèque Microsoft Graph .NET](https://github.com/microsoftgraph/msgraph-sdk-dotnet) pour exploiter les données renvoyées par Microsoft Graph. 
 
 En outre, l’exemple utilise la [bibliothèque d’authentification Microsoft (MSAL)](https://www.nuget.org/packages/Microsoft.Identity.Client/) pour l’authentification. Le kit de développement logiciel (SDK) MSAL offre des fonctionnalités permettant d’utiliser le [point de terminaison Azure AD v2.0](https://azure.microsoft.com/en-us/documentation/articles/active-directory-appmodel-v2-overview), qui permet aux développeurs d’écrire un flux de code unique qui gère l’authentification des comptes professionnels ou scolaires (Azure Active Directory) et personnels (Microsoft).
 
- > **Remarque** Le kit de développement logiciel MSAL se trouve actuellement dans la version préliminaire et en tant que tel, il ne doit pas être utilisé dans le code de production. Il est utilisé ici à titre indicatif uniquement.
+## <a name="important-note-about-the-msal-preview"></a>Remarque importante à propos de la version d’essai MSAL
+
+La bibliothèque peut être utilisée dans un environnement de production. Nous fournissons la même prise en charge du niveau de production pour cette bibliothèque que pour nos bibliothèques de production actuelles. Lors de la version d’essai, nous pouvons apporter des modifications à l’API, au format de cache interne et à d’autres mécanismes de cette bibliothèque que vous devrez prendre en compte avec les correctifs de bogues ou les améliorations de fonctionnalités. Cela peut avoir un impact sur votre application. Par exemple, une modification du format de cache peut avoir un impact sur vos utilisateurs. Par exemple, il peut leur être demandé de se connecter à nouveau. Une modification de l’API peut vous obliger à mettre à jour votre code. Lorsque nous fournissons la version de disponibilité générale, vous devez effectuer une mise à jour vers la version de disponibilité générale dans un délai de six mois, car les applications écrites à l’aide de la version d’évaluation de la bibliothèque ne fonctionneront plus.
 
 ## <a name="prerequisites"></a>Conditions préalables
 
@@ -35,7 +37,7 @@ Cet exemple nécessite les éléments suivants :
 
 4. Copiez l’ID de l’application. Il s’agit de l’identificateur unique de votre application. 
 
-5. Sous **Secrets de l’application**, choisissez **Générer un nouveau mot de passe**. Copiez le mot de passe à partir de la boîte de dialogue **Nouveau mot de passe créé**.
+5. Sous **Secrets de l'application**, choisissez **Générer un nouveau mot de passe**. Copiez le mot de passe à partir de la boîte de dialogue **Nouveau mot de passe créé**.
 
    Vous utiliserez l’ID de l’application et le mot de passe pour configurer l’exemple d’application dans la section suivante. 
 
@@ -61,7 +63,7 @@ Cet exemple nécessite les éléments suivants :
 
    >Si vous constatez des erreurs pendant l’installation des packages, vérifiez que le chemin d’accès local où vous avez sauvegardé la solution n’est pas trop long/profond. Pour résoudre ce problème, il vous suffit de déplacer la solution dans un dossier plus près du répertoire racine de votre lecteur.
 
-5. Connectez-vous à votre compte personnel, professionnel ou scolaire et accordez les autorisations demandées.
+5. Connectez-vous à votre compte personnel, professionnel ou scolaire, et accordez les autorisations demandées.
 
 6. Choisissez le bouton **Obtenir l’adresse de messagerie**. Une fois l’opération terminée, l’adresse de messagerie de l’utilisateur connecté s’affiche dans la page.
 
